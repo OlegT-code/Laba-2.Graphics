@@ -30,7 +30,6 @@ namespace CompGraphics_Laba2
         {
             g = pictureBox1.CreateGraphics();
 
-            int ex = 0, ey = 0;
             float old_ex = 0, old_ey = 0;
             float x = 0, y = 0;
             Pen axesPen = new Pen(Color.Red, 1);
@@ -55,8 +54,8 @@ namespace CompGraphics_Laba2
             x = -40f;
             while(x <= 40)
             {
-                y = Convert.ToSingle(2 * Math.Pow(x, 3) + 2 * x);
-                g.DrawLine(graphicsPen, old_ex, old_ey, x, y);
+                y = (Convert.ToSingle(2 * Math.Pow(x, 3) + 2 * x)) * 20f;
+                g.DrawLine(graphicsPen, old_ex * 20, old_ey, x * 20, y);
 
                 old_ex = x;
                 old_ey = y;
@@ -74,13 +73,12 @@ namespace CompGraphics_Laba2
         {
             g = pictureBox1.CreateGraphics();
 
-            int ex = 0, ey = 0;
             float old_ex = 0, old_ey = 0;
             float x = 0, y = 0;
 
             g.PageUnit = GraphicsUnit.Millimeter;
             Pen axesPen = new Pen(Color.Cyan, 0.1f);
-            Pen graphicsPen = new Pen(Color.FromArgb(0, 0, 255), 0.1f);
+            Pen graphicsPen = new Pen(Color.FromArgb(0, 0, 255), 0.001f);
 
             pictureBox1.BackColor = Color.FromKnownColor(KnownColor.ControlLightLight);
             pictureBox1.Refresh();
@@ -94,17 +92,15 @@ namespace CompGraphics_Laba2
             g.DrawLine(axesPen, 0, HeightInMM / 2, WidthInMM, HeightInMM / 2);
             g.DrawLine(axesPen, WidthInMM / 2, 0, WidthInMM / 2, HeightInMM);
 
-            //g.TranslateTransform((pictureBox1.Size.Width - 1) / 2,
-            //   (pictureBox1.Size.Height - 1) / 2);
             g.TranslateTransform(WidthInMM / 2, HeightInMM / 2);
             g.ScaleTransform(1, -1);
 
             x = -40f;
             while (x <= 40)
             {
-                y = Convert.ToSingle(2 * Math.Pow(x, 3) + 2 * x);
-                g.DrawLine(graphicsPen, old_ex, old_ey,
-                    x / g.DpiX * 25.4f , y / g.DpiY * 25.4f);
+                y = (Convert.ToSingle(2 * Math.Pow(x, 3) + 2 * x)) * 20;
+                g.DrawLine(graphicsPen, old_ex  * 20, old_ey,
+                    (x / g.DpiX * 75f) * 20, y / g.DpiY * 75f);
 
                 old_ex = x;
                 old_ey = y;
@@ -121,10 +117,8 @@ namespace CompGraphics_Laba2
         {
             g = pictureBox1.CreateGraphics();
 
-            int ex = 0, ey = 0;
             float old_ex = 0, old_ey = 0;
             float x = 0, y = 0;
-            float shag = 0;
 
             g.PageUnit = GraphicsUnit.Inch;
             Pen axesPen = new Pen(Color.Orange, 0.01f);
@@ -149,8 +143,7 @@ namespace CompGraphics_Laba2
             while (x <= 40)
             {
                 y = Convert.ToSingle(2 * Math.Pow(x, 3) + 2 * x);
-                g.DrawLine(graphicsPen, old_ex, old_ey,
-                    x, y);
+                g.DrawLine(graphicsPen, old_ex, old_ey, x, y);
 
                 old_ex = x;
                 old_ey = y;
